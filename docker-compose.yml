@@ -1,0 +1,27 @@
+mysql:
+  image: mysql:5.7
+  container_name: symfony-reservas-mysql
+  volumes:
+    - "./var/data/mysql:/var/lib/mysql"
+  environment:
+    - MYSQL_ROOT_PASSWORD=1234
+    - MYSQL_DATABASE=reservas
+    - MYSQL_USER=reservas
+    - MYSQL_PASSWORD=reservas
+  ports:
+    - 3306:3306
+
+web:
+  #image: rcarlos/php7.1-apache:1.0
+  image: webdevops/php-apache-dev:7.1
+  container_name: symfony-reservas-php-apache
+  volumes:
+    - "./:/var/www/webapp"
+  links:
+    - mysql
+  ports:
+    - 80:80
+  environment: # define o document root da aplicação. e.g.(laravel => "public", symfony => "web", ZF2 => "public")
+    - WEB_DOCUMENT_ROOT=web
+    - PHP_DATE_TIMEZONE=America/Sao_Paulo
+    - WEB_DOCUMENT_INDEX=app_dev.php
