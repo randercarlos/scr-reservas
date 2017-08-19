@@ -9,22 +9,22 @@
             <table class="stack">
             <thead>
                 <tr>
-                    <th width="200">QUARTO</th>
-                    <th width="200">NOME</th>
-                    <th width="200">DATAS</th>
-                    <th width="200">AÇÕES</th>
+                    <th width="100" class="centro">QUARTO</th>
+                    <th width="400">NOME</th>
+                    <th width="200" class="centro">ESTADIA</th>
+                    <th width="100" class="centro">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
             {% for reserva in reservas %}
                 <tr>
-                  <td>{{reserva.quarto.nome}}</td>
+                  <td class="centro">{{reserva.quarto.nome}}</td>
                   <td>{{reserva.hospede.titulo | capitalize}}. {{reserva.hospede.nome}}</td>
-                  <td>{{ reserva.dataEntrada | date('d/M/Y') | upper }} para
-                    {{ reserva.dataSaida | date('d/M/Y') | upper }}
+                  <td class="centro">De <span class="dt_entrada">{{ reserva.dataEntrada | date('d/m/Y')}}</span> até
+                    <span class="dt_saida">{{ reserva.dataSaida | date('d/m/Y')}}</span>
                   </td>
-                  <td><a class="hollow button alert"
-                        href="{{ path('reserva.cancelar', { 'id_reserva' : reserva.id }) }}"
+                  <td class="centro">
+                    <a class="hollow button alert" href="{{ path('reserva.cancelar', { 'id_reserva' : reserva.id }) }}"
                         onclick="return confirm('Deseja realmente cancelar a reserva ?')">CANCELAR</a>
                   </td>
                 </tr>

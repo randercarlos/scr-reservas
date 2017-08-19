@@ -12,3 +12,19 @@ a.button {
 a.hollow {
     margin-right: 5px;
 }
+
+.centro {
+    text-align: center;
+}
+
+.dt_entrada {
+    color: #228B22;
+}
+
+.dt_saida {
+    color: #B8860B;
+}
+
+a[class*="hollow"] {
+    float: none;
+}

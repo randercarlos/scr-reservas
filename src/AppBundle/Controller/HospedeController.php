@@ -28,4 +28,28 @@ class HospedeController extends Controller
             'hospedes' => $hospedes
         ]);
     }
+
+    /**
+     * @Route("/hospede/novo", name="hospede.novo")
+     * @Method("GET")
+     */
+    public function novoAction(Request $request)
+    {
+
+        return $this->render('hospede/form.html.twig', [
+            'hospedes' => []
+        ]);
+    }
+
+    /**
+     * @Route("/hospede/editar/{id}", name="hospede.editar")
+     * @Method("GET")
+     */
+    public function editarAction(Request $request, $id)
+    {
+
+        return $this->render('hospede/form.html.twig', [
+            'hospedes' => []
+        ]);
+    }
 }

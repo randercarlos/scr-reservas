@@ -15,9 +15,16 @@ class ReservaController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $reservas = [];
+        $reservas[] = ['id' => 1, 'quarto' => ['nome' => '101'], 'hospede' => ['titulo' => 'Sr', 'nome' => 'Leonel'],
+        'dataEntrada' => '2017-08-20', 'dataSaida' => '2017-08-22'];
+        $reservas[] = ['id' => 2, 'quarto' => ['nome' => '402'], 'hospede' => ['titulo' => 'Dr', 'nome' => 'Augusto'],
+        'dataEntrada' => '2017-08-21', 'dataSaida' => '2017-08-24'];
+        $reservas[] = ['id' => 3, 'quarto' => ['nome' => '203'], 'hospede' => ['titulo' => 'PhD', 'nome' => 'Marcos'],
+        'dataEntrada' => '2017-08-19', 'dataSaida' => '2017-08-21'];
 
         return $this->render('reserva/index.html.twig', [
-            'reservas' => []
+            'reservas' => $reservas
         ]);
     }
 
