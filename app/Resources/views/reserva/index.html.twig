@@ -1,0 +1,37 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4>Reservas</h4>
+
+            <table class="stack">
+            <thead>
+                <tr>
+                    <th width="200">QUARTO</th>
+                    <th width="200">NOME</th>
+                    <th width="200">DATAS</th>
+                    <th width="200">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for reserva in reservas %}
+                <tr>
+                  <td>{{reserva.quarto.nome}}</td>
+                  <td>{{reserva.hospede.titulo | capitalize}}. {{reserva.hospede.nome}}</td>
+                  <td>{{ reserva.dataEntrada | date('d/M/Y') | upper }} para
+                    {{ reserva.dataSaida | date('d/M/Y') | upper }}
+                  </td>
+                  <td><a class="hollow button alert"
+                        href="{{ path('reserva.cancelar', { 'id_reserva' : reserva.id }) }}"
+                        onclick="return confirm('Deseja realmente cancelar a reserva ?')">CANCELAR</a>
+                  </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

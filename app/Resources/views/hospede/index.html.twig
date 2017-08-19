@@ -4,15 +4,15 @@
 
     <div class="row">
         <div class="medium-12 large-12 columns">
-            <h4>Hóspedes</h4>
-            <div class="medium-3  columns"><a class="button" href="">ADICIONAR HÓSPEDE</a></div>
+            <h4 class="titulo">Hóspedes</h4>
+            <div class="columns"><a class="button" href="">ADICIONAR HÓSPEDE</a></div>
 
             <table class="stack">
                 <thead>
                     <tr>
-                      <th width="200">Name</th>
-                      <th width="200">Email</th>
-                      <th width="200">Ações</th>
+                      <th width="300px">Nome</th>
+                      <th width="200px">Email</th>
+                      <th width="100px" style="text-align: center">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,8 +21,9 @@
                         <td>{{ hospede.titulo | capitalize }}. {{ hospede.nome }}</td>
                         <td>{{ hospede.email }}</td>
                         <td>
-                            <a class="hollow button" href="">EDITAR</a>
-                            <a class="hollow button warning" href="">RESERVAR QUARTO</a>
+                            <a class="hollow button" href="/hospede/1">EDITAR</a>
+                            <a class="hollow button warning"
+                                href="{{ path('reserva.reservar', {'id_hospede': hospede.id}) }}">RESERVAR QUARTO</a>
                         </td>
                     </tr>
                 {% endfor %}

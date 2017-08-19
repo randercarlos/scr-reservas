@@ -17,13 +17,13 @@ class HospedeController extends Controller
     public function indexAction(Request $request)
     {
         $hospedes = [];
-        $hospedes[] = ['titulo' => 'Sr.', 'nome' => 'Agostinho Carrara', 'email' => 'acarraga@gmail.com'];
-        $hospedes[] = ['titulo' => 'Sra.', 'nome' => 'Júlia Santos', 'email' => 'jsantos@gmail.com'];
-        $hospedes[] = ['titulo' => 'Sr.', 'nome' => 'Pedro Cardoso', 'email' => 'pcardoso@gmail.com'];
-        $hospedes[] = ['titulo' => 'Sra.', 'nome' => 'Maria Silvia', 'email' => 'msilvia@gmail.com'];
-        $hospedes[] = ['titulo' => 'Sr.', 'nome' => 'Alan Pedro', 'email' => 'apedro@gmail.com'];
+        $hospedes[] = ['id' => 1, 'titulo' => 'Sr', 'nome' => 'Agostinho Carrara', 'email' => 'acarraga@gmail.com'];
+        $hospedes[] = ['id' => 2, 'titulo' => 'Sra', 'nome' => 'Júlia Santos', 'email' => 'jsantos@gmail.com'];
+        $hospedes[] = ['id' => 3, 'titulo' => 'Sr', 'nome' => 'Pedro Cardoso', 'email' => 'pcardoso@gmail.com'];
+        $hospedes[] = ['id' => 4, 'titulo' => 'Sra', 'nome' => 'Maria Silvia', 'email' => 'msilvia@gmail.com'];
+        $hospedes[] = ['id' => 5, 'titulo' => 'Sr', 'nome' => 'Alan Pedro', 'email' => 'apedro@gmail.com'];
 
-        // replace this example code with whatever you need
+
         return $this->render('hospede/index.html.twig', [
             'hospedes' => $hospedes
         ]);

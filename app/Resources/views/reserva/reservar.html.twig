@@ -1,0 +1,52 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4>Hóspedes/Reservas</h4>
+            <div class="medium-2  columns">RESERVA PARA: {{ id_hospede }}</div>
+            <div class="medium-2  columns"><b></b></div>
+
+            <form action="" method="post">
+                <div class="medium-1  columns">DE:</div>
+                <div class="medium-2  columns">
+                    <input name="form[dateFrom]" value="" type="text" class="datepicker" />
+                </div>
+                <div class="medium-1  columns">PARA:</div>
+                <div class="medium-2  columns">
+                    <input name="form[dateTo]" value="" type="text" class="datepicker" />
+                </div>
+                <div class="medium-2  columns">
+                    <input class="button" type="submit" value="PESQUISAR" />
+                </div>
+            </form>
+
+            <table class="stack">
+            <thead>
+                <tr>
+                    <th width="200">Quarto</th>
+                    <th width="300">Disponibilidade</th>
+                    <th width="100">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for quarto in quartos %}
+                <tr>
+                    <td>{{ quarto.nome }}</td>
+                    <td>
+                        <div class="callout success">
+                            <h7>Disponível</h7>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="hollow button warning" href="/reservar/quarto/1">RESERVAR AGORA</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

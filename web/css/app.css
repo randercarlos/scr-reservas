@@ -1,0 +1,14 @@
+
+h4.titulo {
+    font-family: Verdana;
+    border-bottom: 2px solid gray;
+    margin-bottom: 40px;
+}
+
+a.button {
+    float: right;
+}
+
+a.hollow {
+    margin-right: 5px;
+}

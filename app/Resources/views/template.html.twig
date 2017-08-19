@@ -5,7 +5,7 @@
         <title>{% block title %}Sistema de Controle de Reservas{% endblock %}</title>
 
         {% block stylesheets %} {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.css') }}">
@@ -19,8 +19,8 @@
                 <div class="top-bar-left">
                     <ul class="dropdown menu" data-dropdown-menu>
                         <li><a href="{{ path('index.homepage') }}">Home</a></li>
-                        <li><a href="{{ path('hospede.index') }}">Clientes</a></li>
-                        <li><a href="">Reservas</a></li>
+                        <li><a href="{{ path('hospede.index') }}">Hóspedes</a></li>
+                        <li><a href="{{ path('reserva.index') }}">Reservas</a></li>
                     </ul>
                 </div>
             </div>
