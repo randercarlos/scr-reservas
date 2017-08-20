@@ -1,0 +1,41 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4 class="titulo">Quartos</h4>
+            <div class="columns">
+                <a class="button" href="{{ path('quarto.novo') }}">
+                    ADICIONAR QUARTO
+                </a>
+            </div>
+
+            <table class="stack">
+                <thead>
+                    <tr>
+                      <th width="50px" class="centro">Nome</th>
+                      <th width="50px" class="centro">Andar</th>
+                      <th width="450px">Descrição</th>
+                      <th width="50px" class="centro">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for quarto in quartos %}
+                    <tr>
+                        <td class="centro">{{ quarto.nome }}</td>
+                        <td class="centro">{{ quarto.andar }}</td>
+                        <td>{{ quarto.descricao }}</td>
+                        <td class="centro">
+                            <a class="hollow button" href="">EDITAR</a>
+                            <a class="hollow button alert" href=""
+                               onclick="return confirm('Deseja realmente excluir a quarto ?')">EXCLUIR</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

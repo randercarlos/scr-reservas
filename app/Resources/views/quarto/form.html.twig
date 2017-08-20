@@ -1,0 +1,30 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+        <h4></h4>
+
+        <form action="" method="post">
+            <div class="medium-8 columns">
+                <label>Nome:</label>
+                <input name="" value="" type="text" />
+            </div>
+            <div class="medium-4 columns">
+                <label>Andar:</label>
+                <input name="" value="" type="text" />
+            </div>
+            <div class="medium-12 columns">
+                <label>Descrição:</label>
+                <input name="" value="" type="text" />
+            </div>
+            <div class="medium-12  columns">
+                <input type="submit" value="SALVAR" class="button success hollow" />
+                <a class="hollow button alert" href="{{ path('quarto.index') }}">CANCELAR</a>
+            </div>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}
