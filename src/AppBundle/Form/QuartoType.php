@@ -14,10 +14,11 @@ class QuartoType extends AbstractType
     {
         $builder
             ->setMethod('PUT')
-            ->add('nome', TextType::class, array('label'  => 'Nome:'))
-            ->add('andar', TextType::class, array('label'  => 'Andar:'))
-            ->add('descricao', TextType::class, array('label'  => 'Descrição:'));
+            ->add('nome', null, array('label'  => 'Nome:'))
+            ->add('andar', null, array('label'  => 'Andar:'))
+            ->add('descricao', null, array('label'  => 'Descrição:'));
     }
+    
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

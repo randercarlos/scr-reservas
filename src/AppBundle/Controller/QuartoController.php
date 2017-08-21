@@ -33,6 +33,8 @@ class QuartoController extends Controller
     }
 
     /**
+     * Adiciona um novo quarto
+     *
      * @Route("/quarto/novo", name="quarto.novo")
      * @Method({"GET", "PUT"})
      */
@@ -44,9 +46,9 @@ class QuartoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            
-
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($quarto);
+            $em->flush();
 
             return $this->redirectToRoute('quarto.index');
         }

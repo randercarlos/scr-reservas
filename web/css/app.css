@@ -1,4 +1,7 @@
 
+* {
+    font: 16px Calibri, Arial;
+}
 h4.titulo {
     font-family: Verdana;
     font-size: 25px;
@@ -29,4 +32,18 @@ a.hollow, input.hollow {
 
 a[class*="hollow"] {
     float: none;
+}
+
+form div ul {
+    font: 14px Calibri, Arial;
+    border: 1px solid pink;
+    color: crimson;
+    display: block;
+    background-color: #FFE4E1;
+    padding: 5px 5px;
+    margin: 0;
+}
+
+form div ul li {
+    list-style-type: none;
 }

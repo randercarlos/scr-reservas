@@ -11,9 +11,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Classe Quarto
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\QuartoRepository")
  * @ORM\Table(name="tb_quarto")
- * @UniqueEntity("nome")
+ * @UniqueEntity("nome", message="quarto.nome.not_unique")
  */
 class Quarto
 {
@@ -29,7 +29,7 @@ class Quarto
     /**
      * @ORM\Column(type="string", name="nm_quarto", length=20, unique=true)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="quarto.nome.not_blank")
      * @Assert\Length(max = 20)
      *
      * @var string
@@ -37,10 +37,10 @@ class Quarto
     private $nome;
 
     /**
-     * @ORM\Column(type="string", name="de_andar", length=5)
+     * @ORM\Column(type="string", name="de_andar", length=15)
      *
-     * @Assert\NotBlank()
-     * @Assert\Length(max = 5)
+     * @Assert\NotBlank(message="quarto.andar.not_blank")
+     * @Assert\Length(max = 15)
      * @var string
      */
     private $andar;
