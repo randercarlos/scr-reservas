@@ -4,26 +4,29 @@
 
     <div class="row">
         <div class="medium-12 large-12 columns">
-        <h4></h4>
+        <h4 class="titulo">Adicionar Novo Quarto</h4>
 
-        <form action="" method="post">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_errors(form) }}
+
             <div class="medium-8 columns">
-                <label>Nome:</label>
-                <input name="" value="" type="text" />
+                {{ form_label(form.nome, null) }}
+                {{ form_widget(form.nome) }}
             </div>
             <div class="medium-4 columns">
-                <label>Andar:</label>
-                <input name="" value="" type="text" />
+                {{ form_label(form.andar, null) }}
+                {{ form_widget(form.andar) }}
             </div>
             <div class="medium-12 columns">
-                <label>Descrição:</label>
-                <input name="" value="" type="text" />
+                {{ form_label(form.descricao, null) }}
+                {{ form_widget(form.descricao) }}
             </div>
-            <div class="medium-12  columns">
+            <div class="medium-12 columns">
                 <input type="submit" value="SALVAR" class="button success hollow" />
                 <a class="hollow button alert" href="{{ path('quarto.index') }}">CANCELAR</a>
             </div>
-        </form>
+
+        {{ form_end(form) }}
         </div>
     </div>
 

@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use AppBundle\Entity\Quarto;
+use AppBundle\Form\QuartoType;
 
 class QuartoController extends Controller
 {
@@ -32,12 +34,26 @@ class QuartoController extends Controller
 
     /**
      * @Route("/quarto/novo", name="quarto.novo")
-     * @Method("GET")
+     * @Method({"GET", "PUT"})
      */
     public function novoAction(Request $request)
     {
-        return $this->render('quarto/form.html.twig', [
+        $quarto = new Quarto();
+        $form = $this->createForm(QuartoType::class, $quarto);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
             
+
+
+            return $this->redirectToRoute('quarto.index');
+        }
+
+        return $this->render('quarto/form.html.twig', [
+            'quarto' => $quarto,
+            'form' => $form->createView()
         ]);
     }
 }

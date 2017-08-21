@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Hospede;
 use AppBundle\Entity\Quarto;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * classe Reserva
@@ -24,15 +25,19 @@ class Reserva
     private $id;
 
     /**
-     * @ORM\Column(type="datetime", name="dt_entrada")
+     * @ORM\Column(type="date", name="dt_entrada")
      *
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      * @var \DateTime
      */
     private $dataEntrada;
 
     /**
-     * @ORM\Column(type="datetime", name="dt_saida")
+     * @ORM\Column(type="date", name="dt_saida")
      *
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      * @var \DateTime
      */
     private $dataSaida;
@@ -44,6 +49,8 @@ class Reserva
      * @ORM\OneToOne(targetEntity="Quarto")
      * @ORM\JoinColumn(name="fk_quarto", referencedColumnName="id_quarto")
      *
+     * @Assert\NotNull()
+     * @Assert\Type(type="AppBundle/Entity/Quarto")
      * @var \AppBundle\Entity\Quarto
      */
     private $quarto;
@@ -55,6 +62,8 @@ class Reserva
      * @ORM\ManyToOne(targetEntity="Hospede", inversedBy="reservas")
      * @ORM\JoinColumn(name="fk_hospede", referencedColumnName="id_hospede")
      *
+     * @Assert\NotNull()
+     * @Assert\Type(type="AppBundle/Entity/Hospede")
      * @var AppBundle\Entity\Hospede
      */
     private $hospede;

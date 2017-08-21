@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Reserva;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Classe Quarto
