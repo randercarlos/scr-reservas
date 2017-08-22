@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Quarto;
 use AppBundle\Form\QuartoType;
+use Psr\Log\LoggerInterface;
 
 class QuartoController extends Controller
 {
@@ -102,5 +103,28 @@ class QuartoController extends Controller
             'quarto' => $quarto,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Exclui um quarto existente
+     *
+     * @param Request $request Objeto Request
+     * @param Quarto $quarto Objeto Quarto para a exclusão(usa ParamConverter)
+     *
+     * @return Response $response Objeto Response
+     *
+     * @Route("/quarto/excluir/{id}", name="quarto.excluir", requirements={"id": "\d+"})
+     * @Method("GET")
+     */
+    public function excluirAction(Quarto $quarto, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($quarto);
+        $em->flush();
+
+        $this->addFlash('notice', 'quarto.deleted_successfully');
+        $this->addFlash('quarto', $quarto->getNome());
+
+        return $this->redirectToRoute('quarto.index');
     }
 }

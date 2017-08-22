@@ -6,11 +6,22 @@
         <div class="medium-12 large-12 columns">
             <h4 class="titulo">Quartos</h4>
 
+            {# Exibe as mensagens de sucesso #}
             {% if app.session.flashBag.has('notice') %}
                 <div class="sucesso">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 
                     {% set flash_message = app.session.flashBag.get('notice') | first %}
+                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('quarto') | first }) }}
+                </div>
+            {% endif %}
+
+            {# Exibe as mensagens de falha #}
+            {% if app.session.flashBag.has('error') %}
+                <div class="alerta">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+                    {% set flash_message = app.session.flashBag.get('error') | first %}
                     {{ flash_message | trans({'%nome%': app.session.flashBag.get('quarto') | first }) }}
                 </div>
             {% endif %}
@@ -38,7 +49,7 @@
                         <td>{{ quarto.descricao }}</td>
                         <td class="centro">
                             <a class="hollow button" href="{{ path('quarto.editar', {'id': quarto.id }) }}">EDITAR</a>
-                            <a class="hollow button alert" href=""
+                            <a class="hollow button alert" href="{{ path('quarto.excluir', {'id': quarto.id }) }}"
                                onclick="return confirm('Deseja realmente excluir a quarto ?')">EXCLUIR</a>
                         </td>
                     </tr>

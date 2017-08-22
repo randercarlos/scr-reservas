@@ -43,20 +43,22 @@
         </div>
 
 
-        {% block javascripts %} {% endblock %}
+        {% block javascripts %} 
 
-        <script src="{{ asset('js/jquery.js') }}"></script>
-        <script src="{{ asset('js/what-input.js') }}"></script>
-        <script src="{{ asset('js/foundation.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('pickadate/lib/picker.js') }}"></script>
-        <script src="{{ asset('pickadate/lib/picker.date.js') }}"></script>
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/what-input.js') }}"></script>
+            <script src="{{ asset('js/foundation.js') }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('pickadate/lib/picker.js') }}"></script>
+            <script src="{{ asset('pickadate/lib/picker.date.js') }}"></script>
 
-        <script type="text/javascript">
-            $('.datepicker').pickadate({
-                format: 'yyyy-mm-dd',
-                formatSubmit: 'yyyy-mm-dd'
-            });
-        </script>
+            <script type="text/javascript">
+                $('.datepicker').pickadate({
+                    format: 'yyyy-mm-dd',
+                    formatSubmit: 'yyyy-mm-dd'
+                });
+            </script>
+
+        {% endblock %}
     </body>
 </html>

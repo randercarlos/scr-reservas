@@ -27,7 +27,7 @@
             </div>
 
             <div class="medium-12 columns">
-                <input type="submit" value="SALVAR" class="button success hollow" id="form_salvar" />
+                <input type="submit" value="SALVAR" class="button success hollow" id="botao_salvar" />
                 <a class="hollow button alert" href="{{ path('quarto.index') }}">CANCELAR</a>
             </div>
 
@@ -35,13 +35,18 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
+    {% block javascripts %}
+        {{ parent() }}
 
-            $('#form_salvar').click(function(){
-                $(this).attr("disabled","disabled");
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $('#botao_salvar').click(function(){
+                    $(this).attr("readonly","readonly");
+                });
+
             });
+        </script>
+    {% endblock %}
 
-        });
-    </script>
 {% endblock %}
