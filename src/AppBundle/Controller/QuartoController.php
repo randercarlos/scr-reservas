@@ -55,6 +55,7 @@ class QuartoController extends Controller
             $em->flush(); */
 
             $this->addFlash('notice', 'quarto.saved_successfully');
+            $this->addFlash('quarto', $form->get('nome')->getData());
 
             return $this->redirectToRoute('quarto.index');
         }

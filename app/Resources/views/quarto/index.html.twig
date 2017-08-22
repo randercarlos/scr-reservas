@@ -10,9 +10,8 @@
                 <div class="sucesso">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 
-                    {% for flash_message in app.session.flashBag.get('notice') %}
-                        {{ flash_message | trans }}
-                    {% endfor %}
+                    {% set flash_message = app.session.flashBag.get('notice') | first %}
+                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('quarto') | first }) }}
                 </div>
             {% endif %}
 
