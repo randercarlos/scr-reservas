@@ -1,6 +1,5 @@
-
-# Validações da entidade Quarto
-quarto.nome.not_blank: O nome do quarto é obrigatório!
-quarto.andar.not_blank: O andar do quarto é obrigatório!
-quarto.descricao.not_blank: A descrição do quarto é obrigatória!
-quarto.nome.not_unique: Já existe um quarto com esse nome!
+# Quarto
+quarto.nome.not_blank: 'O nome do quarto é obrigatório!'
+quarto.andar.not_blank: 'O andar do quarto é obrigatório!'
+quarto.descricao.not_blank: 'A descrição do quarto é obrigatória!'
+quarto.nome.not_unique: 'Já existe um quarto com esse nome!'

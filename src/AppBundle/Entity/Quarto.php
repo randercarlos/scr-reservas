@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Classe Quarto
  *
- * @ORM\Entity(repositoryClass="AppBundle\Entity\QuartoRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuartoRepository")
  * @ORM\Table(name="tb_quarto")
  * @UniqueEntity("nome", message="quarto.nome.not_unique")
  */

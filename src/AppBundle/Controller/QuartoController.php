@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Quarto;
 use AppBundle\Form\QuartoType;
 
@@ -17,7 +18,7 @@ class QuartoController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $quartos = [];
+        /*$quartos = [];
         $quartos[] = ['id' => 1, 'nome' => '101', 'andar' => '1º', 'descricao' =>
             'Adaptado para deficiente físicos'];
         $quartos[] = ['id' => 2, 'nome' => '502', 'andar' => '5º', 'descricao' =>
@@ -25,7 +26,10 @@ class QuartoController extends Controller
         $quartos[] = ['id' => 3, 'nome' => '202', 'andar' => '2º', 'descricao' => 'Possui vista para o piscinão da Sé'];
         $quartos[] = ['id' => 4, 'nome' => '403', 'andar' => '4º', 'descricao' => ''];
         $quartos[] = ['id' => 5, 'nome' => '1AF', 'andar' => 'terraço',
-            'descricao' => 'Suíte Presidencial com Frigobar, TV de Plasma 40\', luxo e vista para a baía de Angra'];
+            'descricao' => 'Suíte Presidencial com Frigobar, TV de Plasma 40\', luxo e vista para a baía de Angra']; */
+
+        $em = $this->getDoctrine()->getManager();
+        $quartos = $em->getRepository(Quarto::class)->findAllOrdenadoPorNomeEAndar();
 
         return $this->render('quarto/index.html.twig', [
             'quartos' => $quartos
@@ -46,9 +50,11 @@ class QuartoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            /*$em = $this->getDoctrine()->getManager();
             $em->persist($quarto);
-            $em->flush();
+            $em->flush(); */
+
+            $this->addFlash('notice', 'quarto.saved_successfully');
 
             return $this->redirectToRoute('quarto.index');
         }

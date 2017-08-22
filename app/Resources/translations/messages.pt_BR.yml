@@ -1,0 +1,6 @@
+# Quarto
+quarto.nome.label: 'Nome:'
+quarto.andar.label: 'Andar:'
+quarto.descricao.label: 'Descrição:'
+quarto.saved_successfully: 'Quarto '%nome%' salvo com sucesso!'
+quarto.saved_failed: 'Erro ao salvar quarto!'

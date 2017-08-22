@@ -5,6 +5,17 @@
     <div class="row">
         <div class="medium-12 large-12 columns">
             <h4 class="titulo">Quartos</h4>
+
+            {% if app.session.flashBag.has('notice') %}
+                <div class="sucesso">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+                    {% for flash_message in app.session.flashBag.get('notice') %}
+                        {{ flash_message | trans }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             <div class="columns">
                 <a class="button" href="{{ path('quarto.novo') }}">
                     ADICIONAR QUARTO
