@@ -13,21 +13,17 @@ use AppBundle\Form\QuartoType;
 class QuartoController extends Controller
 {
     /**
+     * Lista todos os quartos
+     *
+     * @param Request $request Objeto Request
+     *
+     * @return Response $response Objeto Response
+     *
      * @Route("/quartos", name="quarto.index")
      * @Method("GET")
      */
     public function indexAction(Request $request)
     {
-        /*$quartos = [];
-        $quartos[] = ['id' => 1, 'nome' => '101', 'andar' => '1º', 'descricao' =>
-            'Adaptado para deficiente físicos'];
-        $quartos[] = ['id' => 2, 'nome' => '502', 'andar' => '5º', 'descricao' =>
-            'Quarto com vista em frente para a balada é demais'];
-        $quartos[] = ['id' => 3, 'nome' => '202', 'andar' => '2º', 'descricao' => 'Possui vista para o piscinão da Sé'];
-        $quartos[] = ['id' => 4, 'nome' => '403', 'andar' => '4º', 'descricao' => ''];
-        $quartos[] = ['id' => 5, 'nome' => '1AF', 'andar' => 'terraço',
-            'descricao' => 'Suíte Presidencial com Frigobar, TV de Plasma 40\', luxo e vista para a baía de Angra']; */
-
         $em = $this->getDoctrine()->getManager();
         $quartos = $em->getRepository(Quarto::class)->findAllOrdenadoPorNomeEAndar();
 
@@ -39,23 +35,65 @@ class QuartoController extends Controller
     /**
      * Adiciona um novo quarto
      *
+     * @param Request $request Objeto Request
+     *
+     * @return Response $response Objeto Response
+     *
      * @Route("/quarto/novo", name="quarto.novo")
      * @Method({"GET", "PUT"})
      */
     public function novoAction(Request $request)
     {
         $quarto = new Quarto();
+        $form = $this->createForm(QuartoType::class, $quarto, array(
+            'method' => 'PUT'
+        ));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($quarto);
+            $em->flush();
+
+            $this->addFlash('notice', 'quarto.saved_successfully');
+            $this->addFlash('quarto', $quarto->getNome());
+
+            return $this->redirectToRoute('quarto.index');
+        }
+
+        return $this->render('quarto/form.html.twig', [
+            'quarto' => $quarto,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Atualiza um quarto existente
+     *
+     * @param Request $request Objeto Request
+     * @param Quarto $quarto Objeto Quarto para a atualização(usa ParamConverter)
+     *
+     * @return Response $response Objeto Response
+     *
+     * @Route("/quarto/{id}", name="quarto.editar", requirements={"id": "\d+"})
+     * @Method({"GET", "POST"})
+     */
+    public function editarAction(Request $request, Quarto $quarto)
+    {
+        // O objeto Quarto é recuperado automaticamente através do parâmetro {id} da URL.
+        // Usando ParamConverter, o Symfony faz uma consulta ao banco de dados e retorna o objeto.
         $form = $this->createForm(QuartoType::class, $quarto);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /*$em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($quarto);
-            $em->flush(); */
+            $em->flush();
 
-            $this->addFlash('notice', 'quarto.saved_successfully');
-            $this->addFlash('quarto', $form->get('nome')->getData());
+            $this->addFlash('notice', 'quarto.update_successfully');
+            $this->addFlash('quarto', $quarto->getNome());
 
             return $this->redirectToRoute('quarto.index');
         }

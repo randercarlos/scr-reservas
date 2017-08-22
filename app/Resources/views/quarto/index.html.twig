@@ -24,10 +24,10 @@
             <table class="stack">
                 <thead>
                     <tr>
-                      <th width="50px" class="centro">Nome</th>
-                      <th width="50px" class="centro">Andar</th>
-                      <th width="450px">Descrição</th>
-                      <th width="50px" class="centro">Ações</th>
+                      <th width="100px" class="centro">Nome</th>
+                      <th width="80px" class="centro">Andar</th>
+                      <th width="320px">Descrição</th>
+                      <th width="100px" class="centro">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,10 +37,14 @@
                         <td class="centro">{{ quarto.andar }}</td>
                         <td>{{ quarto.descricao }}</td>
                         <td class="centro">
-                            <a class="hollow button" href="">EDITAR</a>
+                            <a class="hollow button" href="{{ path('quarto.editar', {'id': quarto.id }) }}">EDITAR</a>
                             <a class="hollow button alert" href=""
                                onclick="return confirm('Deseja realmente excluir a quarto ?')">EXCLUIR</a>
                         </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="centro">Nenhum resultado encontrado!</td>
                     </tr>
                 {% endfor %}
                 </tbody>

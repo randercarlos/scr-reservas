@@ -47,3 +47,7 @@ form div ul {
 form div ul li {
     list-style-type: none;
 }
+
+.stack tbody tr td {
+    height: 70px;
+}

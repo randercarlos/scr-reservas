@@ -13,7 +13,6 @@ class QuartoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('PUT')
             ->add('nome', null, array('label'  => 'quarto.nome.label'))
             ->add('andar', null, array('label'  => 'quarto.andar.label'))
             ->add('descricao', null, array('label'  => 'quarto.descricao.label'));
