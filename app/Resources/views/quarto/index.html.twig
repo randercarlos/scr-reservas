@@ -16,16 +16,6 @@
                 </div>
             {% endif %}
 
-            {# Exibe as mensagens de falha #}
-            {% if app.session.flashBag.has('error') %}
-                <div class="alerta">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-
-                    {% set flash_message = app.session.flashBag.get('error') | first %}
-                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('quarto') | first }) }}
-                </div>
-            {% endif %}
-
             <div class="columns">
                 <a class="button" href="{{ path('quarto.novo') }}">
                     ADICIONAR QUARTO

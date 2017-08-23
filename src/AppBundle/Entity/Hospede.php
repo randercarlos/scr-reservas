@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HospedeRepository")
  * @ORM\Table(name="tb_hospede")
- * @UniqueEntity("email")
+ * @UniqueEntity("email", message="quarto.email.not_unique")
  */
 class Hospede
 {
@@ -27,7 +27,7 @@ class Hospede
     /**
      * @ORM\Column(type="string", name="nm_titulo", length=10)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="hospede.titulo.not_blank")
      * @Assert\Length(max = 10)
      * @var string
      */
@@ -36,26 +36,36 @@ class Hospede
     /**
      * @ORM\Column(type="string", name="nm_hospede", length=100)
      *
-     * @Assert\NotBlank()
-     * @Assert\Length(min = 10, max = 100)
+     * @Assert\NotBlank(message="hospede.nome.not_blank")
+     * @Assert\Length(min = 10, max = 100, minMessage = "app.text.min_length", maxMessage = "app.text.max_length")
      * @var string
      */
     private $nome;
 
     /**
+     * @ORM\Column(type="string", name="de_email", length=100, unique=true)
+     *
+     * @Assert\NotBlank(message="hospede.email.not_blank")
+     * @Assert\Length(max = 100)
+     * @Assert\Email(message="hospede.email.not_valid")
+     * @var string
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="string", name="de_endereco", length=250)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="hospede.endereco.not_blank")
      * @Assert\Length(min = 10, max = 250)
      * @var string
      */
     private $endereco;
 
     /**
-     * @ORM\Column(type="string", name="de_cep", length=10)
+     * @ORM\Column(type="string", name="de_cep", length=8)
      *
-     * @Assert\NotBlank()
-     * @Assert\Length(min = 8, max = 10)
+     * @Assert\NotBlank(message="hospede.cep.not_blank")
+     * @Assert\Regex(pattern="/\d{8}/", message="hospede.cep.not_valid")
      * @var string
      */
     private $cep;
@@ -63,7 +73,7 @@ class Hospede
     /**
      * @ORM\Column(type="string", name="de_cidade", length=100)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="hospede.cidade.not_blank")
      * @Assert\Length(min = 3, max = 100)
      * @var string
      */
@@ -72,21 +82,12 @@ class Hospede
     /**
      * @ORM\Column(type="string", name="de_estado", length=2)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="hospede.estado.not_blank")
      * @Assert\Length(min = 2, max = 2)
      * @var string
      */
     private $estado;
 
-    /**
-     * @ORM\Column(type="string", name="de_email", length=100, unique=true)
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(max = 100)
-     * @Assert\Email()
-     * @var string
-     */
-    private $email;
 
     /**
      * Um hóspede pode possuir muitas reservas

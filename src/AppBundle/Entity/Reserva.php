@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * classe Reserva
+ * Classe Reserva
  *
  * @ORM\Entity()
  * @ORM\Table(name="tb_reserva")
@@ -58,7 +58,6 @@ class Reserva
     /**
      * Uma reserva possui um único hóspede, mas um hóspede pode possuir várias reservas
      *
-     * @ORM\Column(type="integer", name="fk_hospede")
      * @ORM\ManyToOne(targetEntity="Hospede", inversedBy="reservas")
      * @ORM\JoinColumn(name="fk_hospede", referencedColumnName="id_hospede")
      *
