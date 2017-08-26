@@ -10,7 +10,7 @@ class ReservaRepository extends EntityRepository
     public function findAllOrdenadoPorDataEntrada()
     {
         return $this->getEntityManager()->createQuery(
-            'SELECT r FROM AppBundle:Reserva r ORDER BY r.dataEntrada ASC'
+            'SELECT r, q, h FROM AppBundle:Reserva r JOIN r.quarto q JOIN r.hospede h ORDER BY r.dataEntrada ASC'
             )->getResult();
     }
 }

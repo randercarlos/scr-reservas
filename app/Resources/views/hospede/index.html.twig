@@ -12,7 +12,7 @@
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 
                     {% set flash_message = app.session.flashBag.get('notice') | first %}
-                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('hospede') | first }) }}
+                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('hospede') | first }) | raw }}
                 </div>
             {% endif %}
 
