@@ -4,21 +4,27 @@
 
     <div class="row">
         <div class="medium-12 large-12 columns">
-            <h4>Hóspedes/Reservas</h4>
-            <div class="medium-2  columns">RESERVA PARA: {{ id_hospede }}</div>
-            <div class="medium-2  columns"><b></b></div>
+            <h4 class="titulo">Hóspedes/Reservas</h4>
 
-            <form action="" method="post">
-                <div class="medium-1  columns">DE:</div>
-                <div class="medium-2  columns">
-                    <input name="form[dateFrom]" value="" type="text" class="datepicker" />
+            {% set dataEntrada = app.request.request.get('dataEntrada') %}
+            {% set dataSaida = app.request.request.get('dataSaida') %}
+            <form action="" method="post" id="form_reservar" name="form_reservar">
+                <div class="flutuar" style="margin-right: 220px">RESERVA PARA: <b>{{ hospede.nome | upper }}</b></div>
+
+                <div class="flutuar" style="margin-right: 10px">ENTRADA:</div>
+                <div class="flutuar" style="margin-right: 30px; width: 100px">
+                    <input name="dataEntrada" id="dataEntrada" type="text" class="datepicker"
+                    value="{{ dataEntrada is not empty ? dataEntrada : '' }}" />
                 </div>
-                <div class="medium-1  columns">PARA:</div>
-                <div class="medium-2  columns">
-                    <input name="form[dateTo]" value="" type="text" class="datepicker" />
+
+                <div class="flutuar" style="margin-right: 10px">SAIDA:</div>
+                <div class="flutuar" style="margin-right: 80px; width: 100px">
+                    <input name="dataSaida" id="dataSaida" type="text" class="datepicker"
+                    value="{{ dataSaida is not empty ? dataSaida : '' }}" />
                 </div>
-                <div class="medium-2  columns">
-                    <input class="button" type="submit" value="PESQUISAR" />
+
+                <div class="flutuar">
+                    <input class="button" type="submit" value="PESQUISAR" id="btn_pesquisar" name="btn_pesquisar" />
                 </div>
             </form>
 
@@ -40,13 +46,57 @@
                         </div>
                     </td>
                     <td>
-                        <a class="hollow button warning" href="/reservar/quarto/1">RESERVAR AGORA</a>
+                        <a href="{{ path('reserva.reservar', {'id_quarto': quarto.id, 'id_hospede': hospede.id}) }}"
+                            class="hollow button warning"
+                            onclick="return confirm('Deseja realmente confirmar a reserva ?')">RESERVAR AGORA</a>
                     </td>
                 </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="centro">Nenhum resultado encontrado!</td>
+                </tr>
+                <!-- <tr>
+                    <td colspan="3" class="centro">A data de entrada ou saída foi alterada! É necessária uma nova
+                    pesquisa</td>
+                </tr> -->
             {% endfor %}
             </tbody>
             </table>
         </div>
     </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#form_reservar").submit(function() {
+
+                    var data_entrada = $("#dataEntrada").val();
+                    var data_saida = $("#dataSaida").val();
+
+                    if (data_entrada === "" || !isDataValida(data_entrada)) {
+                        alert('Informe uma data de entrada válida!');
+                        return false;
+                    }
+
+                    if (data_saida === "" || !isDataValida(data_saida)) {
+                        alert('Informe uma data de saída válida!');
+                        return false;
+                    }
+
+                    if (validaDataIntervaloDatasBR(data_entrada, data_saida) == false) {
+                        alert('A data de saída deve ser posterior a data de entrada!');
+                        return false;
+                    }
+
+                    return true;
+                });
+
+            });
+        </script>
+
+    {% endblock %}
 
 {% endblock %}

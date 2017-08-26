@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Classe Reserva
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ReservaRepository")
  * @ORM\Table(name="tb_reserva")
  */
 class Reserva
@@ -45,7 +45,6 @@ class Reserva
     /**
      * Uma reserva possui um e somente um único quarto
      *
-     * @ORM\Column(type="integer", name="fk_quarto")
      * @ORM\OneToOne(targetEntity="Quarto")
      * @ORM\JoinColumn(name="fk_quarto", referencedColumnName="id_quarto")
      *
@@ -83,7 +82,7 @@ class Reserva
      * @param \DateTime $dataEntrada
      *
      */
-    public function setDataEntrada($dataEntrada)
+    public function setDataEntrada(\DateTime $dataEntrada = null)
     {
         $this->dataEntrada = $dataEntrada;
 
@@ -104,7 +103,7 @@ class Reserva
      *
      * @param \DateTime $dataSaida
      */
-    public function setDataSaida($dataSaida)
+    public function setDataSaida(\DateTime $dataSaida = null)
     {
         $this->dataSaida = $dataSaida;
     }

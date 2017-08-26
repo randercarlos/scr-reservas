@@ -21,3 +21,7 @@ hospede.update_successfully: 'Hóspede %nome% atualizado com sucesso!'
 hospede.deleted_successfully: 'Hóspede %nome% excluído com sucesso!'
 hospede.deleted_failed: 'Falha ao excluir hóspede %nome%!'
 hospede.saved_failed: 'Erro ao salvar hóspede!'
+
+# Reserva
+reserva.saved_successfully: 'Reservado o quarto <b>%quarto%</b> para o hóspede <b>%hospede%</b> no
+período de <b>%entrada%</b> a <b>%saida%</b>!'

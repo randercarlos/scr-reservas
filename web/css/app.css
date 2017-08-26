@@ -1,7 +1,8 @@
 
-* {
+body {
     font: 16px Calibri, Arial;
 }
+
 h4.titulo {
     font-family: Verdana;
     font-size: 25px;
@@ -51,4 +52,9 @@ form div ul li {
 
 .stack tbody tr td {
     height: 70px;
+}
+
+#form_reservar div.flutuar {
+    display: block;
+    float: left;
 }

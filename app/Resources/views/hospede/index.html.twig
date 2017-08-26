@@ -40,7 +40,7 @@
                         <td class="centro">
                             <a class="hollow button" href="{{ path('hospede.editar', {'id': hospede.id} ) }}">EDITAR</a>
                             <a class="hollow button warning"
-                                href="{{ path('reserva.reservar', {'id_hospede': hospede.id}) }}">RESERVAR QUARTO</a>
+                                href="{{ path('reserva.pesquisaData', {'id': hospede.id}) }}">RESERVAR QUARTO</a>
                         </td>
                     </tr>
                 {% else %}

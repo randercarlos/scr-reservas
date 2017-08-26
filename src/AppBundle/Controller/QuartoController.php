@@ -11,6 +11,9 @@ use AppBundle\Entity\Quarto;
 use AppBundle\Form\QuartoType;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Classe QuartoController
+ */
 class QuartoController extends Controller
 {
     /**
