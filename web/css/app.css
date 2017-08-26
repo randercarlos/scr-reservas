@@ -23,6 +23,18 @@ a.hollow, input.hollow {
     text-align: center;
 }
 
+span.reservado {
+    background-color: #1E90FF;
+    font: 14px Calibri;
+}
+span.ativo {
+    background-color: #32CD32;
+    font: 14px Calibri;
+}
+span.expirado {
+    background-color: orange;
+    font: 14px Calibri;
+}
 .dt_entrada {
     color: #228B22;
 }

@@ -159,4 +159,31 @@ class Reserva
     {
         return $this->quarto;
     }
+
+
+    /**
+     * Determina o status da reserva comparando a data atual com a data de entrada e saída da reserva
+     *
+     * @return string status('reservado', 'ativo', 'expirado') or null
+     */
+    public function getStatus()
+    {
+        $agora = new \DateTime('now');
+        if (is_null($this->dataEntrada) || is_null($this->dataSaida))
+        {
+            return null;
+        }
+
+        if ($agora >= $this->dataEntrada && $agora <= $this->dataSaida) {
+            return 'Ativo';
+        }
+
+        if ($this->dataSaida < $agora) {
+            return 'Expirado';
+        }
+
+        if ($this->dataEntrada > $agora) {
+            return 'Reservado';
+        }
+    }
 }
