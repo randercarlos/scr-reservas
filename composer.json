@@ -10,7 +10,7 @@
      }],
     "autoload": {
         "psr-4": {
-            "App\\": "src/AppBundle"
+            "AppBundle\\": "src/AppBundle"
         },
         "classmap": [
             "app/AppKernel.php",

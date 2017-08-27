@@ -45,7 +45,7 @@ class Reserva
     /**
      * Uma reserva possui um e somente um único quarto
      *
-     * @ORM\OneToOne(targetEntity="Quarto")
+     * @ORM\ManyToOne(targetEntity="Quarto")
      * @ORM\JoinColumn(name="fk_quarto", referencedColumnName="id_quarto")
      *
      * @Assert\NotNull()

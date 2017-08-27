@@ -28,7 +28,7 @@
                 </div>
             </form>
 
-            <table class="stack">
+            <table class="stack" id="tabela_reserva">
             <thead>
                 <tr>
                     <th width="200">Quarto</th>
@@ -70,6 +70,19 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
+
+
+                $("#dataEntrada, #dataSaida").change(function() {
+                    // Recupera a quantidade de linhas da tabela. É usado para saber se o botão pesquisar foi clicado
+                    var linhas = $( "#tabela_reserva tbody tr" ).length;
+
+                    // Essa mensagem só é exibida se a pesquisa já foi feita, ou seja, o botão pesquisa foi clicado
+                    if (linhas > 1) {
+                        var html = "A data de entrada ou saída foi alterada. Por favor, refaça a pesquisa!"
+
+                        $("#tabela_reserva tbody").html("<tr><td colspan='3' class='centro'>" + html + "</td></tr>");
+                    }
+                });
 
                 $("#form_reservar").submit(function() {
 
