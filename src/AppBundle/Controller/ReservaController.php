@@ -132,13 +132,30 @@ class ReservaController extends Controller
     }
 
     /**
+     * Cancela(exclui) uma reserva feita
+     *
+     * @param Request $request Objeto Request
+     * @param integer $id Id da reserva
+     *
+     * @return Response $response Objeto Response
+     *
      * @Route("/reserva/cancelar/{id}", name="reserva.cancelar", requirements={"id": "\d+"})
      * @Method("GET")
      */
-    public function cancelarAction(Request $request, $id_hospede)
+    public function cancelarAction(Request $request, $id)
     {
-        return $this->render('reserva/reservar.html.twig', [
-            'id_hospede' => $id_hospede
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $reserva = $em->getRepository(Reserva::class)->findReservaJoinQuartoEHospede($id);
+        
+        $this->addFlash('notice', 'reserva.deleted_successfully');
+        $this->addFlash('quarto', $reserva->getQuarto()->getNome());
+        $this->addFlash('hospede', $reserva->getHospede()->getNome());
+        $this->addFlash('dataEntrada', $reserva->getDataEntrada());
+        $this->addFlash('dataSaida', $reserva->getDataSaida());
+
+        $em->remove($reserva);
+        $em->flush();
+
+        return $this->redirectToRoute('reserva.index');
     }
 }
