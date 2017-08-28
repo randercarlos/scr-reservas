@@ -53,7 +53,7 @@ class ReservaController extends Controller
     {
         // O objeto Hospede é recuperado automaticamente do banco dados através do parâmetro {id} da URL.
         $quartosDisponiveis = [];
-
+        
         // Se o botão pesquisar foi clicado, ou seja, o form foi submetido
         if (!is_null($request->request->get('btn_pesquisar')))
         {
@@ -109,9 +109,6 @@ class ReservaController extends Controller
         $quarto = $em->getRepository(Quarto::class)->find($id_quarto);
         $hospede = $em->getRepository(Hospede::class)->find($id_hospede);
 
-        /*echo 'Hóspede: ' . $hospede->getNome() . ', Data de Entrada: ' . $dataEntrada . ', Data de Saída: '
-            . $dataSaida . ', Quarto: ' . $quarto->getNome(); */
-
         $reserva = new Reserva();
         $reserva->setHospede($hospede);
         $reserva->setQuarto($quarto);
@@ -146,7 +143,7 @@ class ReservaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $reserva = $em->getRepository(Reserva::class)->findReservaJoinQuartoEHospede($id);
-        
+
         $this->addFlash('notice', 'reserva.deleted_successfully');
         $this->addFlash('quarto', $reserva->getQuarto()->getNome());
         $this->addFlash('hospede', $reserva->getHospede()->getNome());
