@@ -92,12 +92,11 @@ class Hospede
     /**
      * Um hóspede pode possuir muitas reservas
      * @ORM\OneToMany(targetEntity="Reserva", mappedBy="hospede")
-
      * @Assert\All({
      *     @Assert\Type(type="AppBundle/Entity/Reserva")
      * })
      *
-     * @var Doctrine\Common\Collections\Collection
+     * @var Doctrine\Common\Collections\ArrayCollection
      */
     private $reservas;
 
