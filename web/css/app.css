@@ -66,8 +66,7 @@ form div ul li {
     height: 70px;
 }
 
-form[name="form"] div.flutuar {
-    color: red;
+div.flutuar {
     display: block;
     float: left;
 }

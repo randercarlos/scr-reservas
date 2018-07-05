@@ -12,7 +12,6 @@ use AppBundle\Form\HospedeType;
 
 class HospedeController extends Controller
 {
-
     /**
      * Lista todos os hóspedes cadastrados
      *
