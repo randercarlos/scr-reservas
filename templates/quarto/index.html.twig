@@ -1,0 +1,91 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4 class="titulo">Quartos</h4>
+
+            {# Exibe as mensagens de sucesso #}
+            {% if app.session.flashBag.has('notice') %}
+                <div class="sucesso">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+                    {% set flash_message = app.session.flashBag.get('notice') | first %}
+                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('quarto') | first }) | raw }}
+                </div>
+            {% endif %}
+
+            {% if app.session.flashBag.has('errors') %}
+                <div class="error">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+                    {% set flash_message = app.session.flashBag.get('errors') | first %}
+                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('quarto') | first }) | raw }}
+                </div>
+            {% endif %}
+
+            <div class="columns">
+                <a class="button" href="{{ path('quarto.novo') }}">
+                    ADICIONAR QUARTO
+                </a>
+            </div>
+
+            <table class="stack">
+                <thead>
+                    <tr>
+                      <th width="20%" class="centro">Nome</th>
+                      <th width="10%" class="centro">Andar</th>
+                      <th width="53%">Descrição</th>
+                      <th width="17%" class="centro">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for quarto in quartos %}
+                    <tr>
+                        <td class="centro">{{
+                            quarto.nome | length > 20
+                            ? quarto.nome | slice(0, 17) ~ '...'
+                            : quarto.nome
+                            }}</td>
+                        <td class="centro">{{
+                            quarto.andar | length > 10
+                            ? quarto.andar | slice(0, 7) ~ '...'
+                            : quarto.andar
+                            }}</td>
+                        <td class="centro">{{
+                            quarto.descricao | length > 70
+                            ? quarto.descricao | slice(0, 67) ~ '...'
+                            : quarto.descricao
+                        }}</td>
+                        <td class="centro">
+                            <a class="hollow button" href="{{ path('quarto.editar', {'id': quarto.id }) }}">EDITAR</a>
+                            <a class="hollow button alert" href="{{ path('quarto.excluir', {'id': quarto.id }) }}"
+                               onclick="return confirm('Deseja realmente excluir a quarto ?')">EXCLUIR</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="centro">Nenhum resultado encontrado!</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $('a.button').click(function(){
+                    $('a.button').attr("disabled","disabled");
+                });
+
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

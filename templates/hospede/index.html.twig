@@ -1,0 +1,70 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4 class="titulo">Hóspedes</h4>
+
+            {# Exibe as mensagens de sucesso #}
+            {% if app.session.flashBag.has('notice') %}
+                <div class="sucesso">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+                    {% set flash_message = app.session.flashBag.get('notice') | first %}
+                    {{ flash_message | trans({'%nome%': app.session.flashBag.get('hospede') | first }) | raw }}
+                </div>
+            {% endif %}
+
+            <div class="columns">
+                <a class="button" href="{{ path('hospede.novo') }}">
+                    ADICIONAR HÓSPEDE
+                </a>
+            </div>
+
+            <table class="stack">
+                <thead>
+                    <tr>
+                      <th width="35%">Nome</th>
+                      <th width="21%">Email</th>
+                      <th width="22%">Cidade</th>
+                      <th width="22%" class="centro">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for hospede in hospedes %}
+                    <tr>
+                        <td>{{ hospede.titulo }} {{ hospede.nome | upper }}</td>
+                        <td>{{ hospede.email }}</td>
+                        <td>{{ hospede.cidade }} - {{ hospede.estado | upper }}</td>
+                        <td class="centro">
+                            <a class="hollow button" href="{{ path('hospede.editar', {'id': hospede.id} ) }}">EDITAR</a>
+                            <a class="hollow button warning"
+                                href="{{ path('reserva.pesquisaData', {'id': hospede.id}) }}">RESERVAR QUARTO</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="centro">Nenhum resultado encontrado!</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $('a.button').click(function(){
+                    $('a.button').attr("disabled","disabled");
+                });
+
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

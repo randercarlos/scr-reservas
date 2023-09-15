@@ -1,0 +1,21 @@
+# Geral
+app.text.max_length: 'Deve ter {{ limit }} caracteres no máximo'
+app.text.min_length: 'Deve ter {{ limit }} caracteres no mínimo'
+
+# Quarto
+quarto.nome.not_blank: 'O nome do quarto é obrigatório!'
+quarto.nome.not_unique: 'Já existe um quarto com esse nome!'
+quarto.andar.not_blank: 'O andar do quarto é obrigatório!'
+quarto.descricao.not_blank: 'A descrição do quarto é obrigatória!'
+
+# Hóspede
+hospede.titulo.not_blank: 'O tratamento do hóspede é obrigatório!'
+hospede.nome.not_blank: 'O nome do hóspede é obrigatório!'
+hospede.email.not_blank: 'O email do hóspede é obrigatório!'
+hospede.email.not_valid: 'O email do hóspede não é válido!'
+quarto.email.not_unique: 'Já existe um hóspede cadastrado com esse email!'
+hospede.endereco.not_blank: 'O endereço do hóspede é obrigatório!'
+hospede.cep.not_blank: 'O CEP do hóspede é obrigatório!'
+hospede.cep.not_valid: 'O CEP do hóspede deve conter 8 números!'
+hospede.cidade.not_blank: 'A cidade do hóspede é obrigatório!'
+hospede.estado.not_blank: 'O estado do hóspede é obrigatório!'

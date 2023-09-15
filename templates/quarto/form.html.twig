@@ -1,0 +1,55 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+        <h4 class="titulo">Adicionar Quarto</h4>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate' }}) }}
+
+            <div class="medium-8 columns">
+                {{ form_label(form.nome, null) }}
+                {{ form_widget(form.nome) }}
+                {{ form_errors(form.nome) }}
+            </div>
+
+            <div class="medium-4 columns">
+                {{ form_label(form.andar, null) }}
+                {{ form_widget(form.andar) }}
+                {{ form_errors(form.andar) }}
+            </div>
+
+            <div class="medium-12 columns">
+                {{ form_label(form.descricao, null) }}
+                {{ form_widget(form.descricao) }}
+                {{ form_errors(form.descricao) }}
+            </div>
+
+            <div class="medium-12 columns">
+                <input type="submit" value="SALVAR" class="button success hollow" id="botao_salvar" />
+                <a class="hollow button alert" href="{{ path('quarto.index') }}">CANCELAR</a>
+            </div>
+
+        {{ form_end(form) }}
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $('#botao_salvar,a.button').click(function(){
+                    $('#botao_salvar').attr("disabled","disabled");
+                    $('a.button').attr("disabled","disabled");
+
+                    $('form').submit();
+                });
+
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

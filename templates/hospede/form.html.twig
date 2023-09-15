@@ -1,0 +1,81 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+        <h4 class="titulo">Adicionar Hóspede</h4>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            <div class="medium-4  columns">
+                {{ form_label(form.titulo, null) }}
+                {{ form_widget(form.titulo) }}
+                {{ form_errors(form.titulo) }}
+            </div>
+
+            <div class="medium-8  columns">
+                {{ form_label(form.nome, null) }}
+                {{ form_widget(form.nome) }}
+                {{ form_errors(form.nome) }}
+            </div>
+
+            <div class="medium-12  columns">
+                {{ form_label(form.email, null) }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="medium-12  columns">
+                {{ form_label(form.endereco, null) }}
+                {{ form_widget(form.endereco) }}
+                {{ form_errors(form.endereco) }}
+            </div>
+
+            <div class="medium-4  columns">
+                {{ form_label(form.cep, null) }}
+                {{ form_widget(form.cep) }}
+                {{ form_errors(form.cep) }}
+            </div>
+
+            <div class="medium-4 columns">
+                {{ form_label(form.cidade, null) }}
+                {{ form_widget(form.cidade) }}
+                {{ form_errors(form.cidade) }}
+            </div>
+
+            <div class="medium-4  columns">
+                {{ form_label(form.estado, null) }}
+                {{ form_widget(form.estado) }}
+                {{ form_errors(form.estado) }}
+            </div>
+
+
+            <div class="medium-12  columns">
+                <input type="submit" value="SALVAR" class="button success hollow" id="botao_salvar" />
+                <a class="hollow button alert" href="{{ path('hospede.index') }}">CANCELAR</a>
+            </div>
+
+        {{ form_end(form) }}
+
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $('#botao_salvar,a.button').click(function(){
+                    $('#botao_salvar').attr("disabled","disabled");
+                    $('a.button').attr("disabled","disabled");
+
+                    $('form').submit();
+                });
+
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

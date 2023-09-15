@@ -1,0 +1,35 @@
+# Quarto
+quarto.nome.label: 'Nome:'
+quarto.andar.label: 'Andar:'
+quarto.descricao.label: 'Descrição:'
+quarto.saved_successfully: 'Quarto <b>%nome%</b> salvo com sucesso!'
+quarto.update_successfully: 'Quarto <b>%nome%</b> atualizado com sucesso!'
+quarto.deleted_successfully: 'Quarto <b>%nome%</b> excluído com sucesso!'
+quarto.deleted_failed: 'Falha ao excluir quarto <b>%nome%</b>!'
+quarto.deleted_foreign_failed: 'Não é possível excluir o quarto <b>%nome%</b> porque está associado a uma reserva!'
+quarto.saved_failed: 'Erro ao salvar quarto!'
+
+# Hóspede
+hospede.titulo.label: 'Tratamento:'
+hospede.nome.label: 'Nome:'
+hospede.endereco.label: 'Endereço:'
+hospede.cep.label: 'CEP:(só números)'
+hospede.cidade.label: 'Cidade:'
+hospede.estado.label: 'Estado:'
+hospede.email.label: 'Email:'
+hospede.saved_successfully: 'Hóspede <b>%nome%</b> salvo com sucesso!'
+hospede.update_successfully: 'Hóspede <b>%nome%</b> atualizado com sucesso!'
+hospede.deleted_successfully: 'Hóspede <b>%nome%</b> excluído com sucesso!'
+hospede.deleted_failed: 'Falha ao excluir hóspede %nome%!'
+hospede.deleted_foreign_failed: 'Não é possível excluir o hóspede %nome% porque está associado a uma reserva!'
+hospede.saved_failed: 'Erro ao salvar hóspede!'
+
+# Reserva
+reserva.saved_successfully: 'Reservado o quarto <b>%quarto%</b> para o hóspede <b>%hospede%</b> no
+período de <b>%entrada%</b> a <b>%saida%</b>!'
+reserva.deleted_successfully: 'A reserva do quarto <b>%quarto%</b> para o hóspede <b>%hospede%</b> no
+período de <b>%entrada%</b> a <b>%saida%</b> foi cancelada com sucesso!'
+
+# Login
+'Bad credentials.': 'Usuário ou senha inválidos!'
+'The presented password is invalid.': 'Senha é inválida!'

@@ -1,0 +1,66 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4 class="titulo">Reservas</h4>
+
+            {# Exibe as mensagens de sucesso #}
+            {% set quarto = app.session.flashBag.get('quarto') | first %}
+            {% set hospede = app.session.flashBag.get('hospede') | first %}
+            {% set dataEntrada = app.session.flashBag.get('dataEntrada') | first | date("d/m/Y") %}
+            {% set dataSaida = app.session.flashBag.get('dataSaida') | first | date("d/m/Y") %}
+
+            {% if app.session.flashBag.has('notice') %}
+                <div class="sucesso">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+
+                    {% set flash_message = app.session.flashBag.get('notice') | first %}
+
+                    {{ flash_message | trans({'%quarto%': quarto, '%hospede%': hospede, '%entrada%': dataEntrada,
+                     '%saida%': dataSaida }) | raw }}
+                </div>
+            {% endif %}
+
+            <table class="stack">
+                <thead>
+                    <tr>
+                        <th width="15%" class="centro">Quarto</th>
+                        <th width="45%">Hóspede</th>
+                        <th width="20%" class="centro">Estadia</th>
+                        <th width="10%" class="centro">Status</th>
+                        <th width="10%" class="centro">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reserva in reservas %}
+                        <tr>
+                            <td class="centro">{{reserva.quarto.nome}}</td>
+                            <td>{{ reserva.hospede.titulo | capitalize }} {{ reserva.hospede.nome }}</td>
+                            <td class="centro">
+                                De <span class="dt_entrada">{{ reserva.dataEntrada | date('d/m/Y') }}</span> até
+                                <span class="dt_saida">{{ reserva.dataSaida | date('d/m/Y') }}</span>
+                            </td>
+                            <td class="centro">
+                                <span class="radius label {{ reserva.status | lower }}" style="color: #fff;">
+                                    {{ reserva.status }}
+                                </span>
+                            </td>
+                            <td class="centro">
+                                <a class="hollow button alert" href="{{ path('reserva.cancelar',
+                                    { 'id' : reserva.id }) }}"
+                                   onclick="return confirm('Deseja realmente cancelar a reserva ?')">CANCELAR</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="centro">Nenhum resultado encontrado!</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

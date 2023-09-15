@@ -1,0 +1,76 @@
+
+/* The alert message box */
+.alerta {
+    padding: 20px;
+    background-color: #f2dede; /* Red */
+    color: #a94442;
+    margin-bottom: 15px;
+    border: 1px solid #ebccd1;
+}
+
+/* The close button */
+.alerta .closebtn {
+    margin-left: 15px;
+    color: #a94442;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.alerta .closebtn:hover {
+    color: black;
+}
+
+/* The alert message box */
+.error {
+    padding: 20px;
+    background-color: #ffcccb; /* Red */
+    color: crimson;
+    margin-bottom: 15px;
+    border: 1px solid crimson;
+}
+
+.error .closebtn {
+    margin-left: 15px;
+    color: #ffcccb;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sucesso {
+    padding: 20px;
+    background-color: #dff0d8; /* Red */
+    color: #3c763d;
+    margin-bottom: 15px;
+    border: 1px solid #d6e9c6;
+}
+
+
+/* The close button */
+.sucesso .closebtn {
+    margin-left: 15px;
+    color: #3c763d;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.sucesso .closebtn:hover {
+    color: black;
+}
+
+.error .closebtn:hover {
+    color: black;
+}

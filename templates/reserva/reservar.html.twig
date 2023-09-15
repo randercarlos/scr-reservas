@@ -1,0 +1,123 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="medium-12 large-12 columns">
+            <h4 class="titulo">Hóspedes/Reservas</h4>
+
+            {% set dataEntrada = app.request.request.get('dataEntrada') %}
+            {% set dataSaida = app.request.request.get('dataSaida') %}
+            <form action="" method="post" id="form_reservar" name="form_reservar">
+                <p class="reservar">Selecione a <b>data de entrada</b> e a <b>data de saida</b> e clique no botão <b>Pesquisar</b> para saber os quartos disponíveis</p>
+                <div class="flutuar" style="margin-right: 220px">RESERVA PARA: <b>{{ hospede.nome | upper }}</b></div>
+
+                <div class="flutuar" style="margin-right: 10px">ENTRADA:</div>
+                <div class="flutuar" style="margin-right: 30px; width: 100px">
+                    <input name="dataEntrada" id="dataEntrada" type="text" class="datepicker"
+                    value="{{ dataEntrada is not empty ? dataEntrada : '' }}" />
+                </div>
+
+                <div class="flutuar" style="margin-right: 10px">SAIDA:</div>
+                <div class="flutuar" style="margin-right: 80px; width: 100px">
+                    <input name="dataSaida" id="dataSaida" type="text" class="datepicker"
+                    value="{{ dataSaida is not empty ? dataSaida : '' }}" />
+                </div>
+
+                <div class="flutuar">
+                    <input class="button" type="submit" value="PESQUISAR" id="btn_pesquisar" name="btn_pesquisar" />
+                </div>
+            </form>
+
+            <table class="stack" id="tabela_reserva">
+            <thead>
+                <tr>
+                    <th style="width: 300px" class="centro">Quarto</th>
+                    <th class="centro">Disponibilidade</th>
+                    <th style="width: 200px;" class="centro">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for quarto in quartos %}
+                <tr>
+                    <td class="centro">{{ quarto.nome }}</td>
+                    <td>
+                        <div class="callout success" style="margin-bottom: 0">
+                            <div style="text-align: center; color: forestgreen; font-size: 20px; margin-bottom: 0">Disponível</div>
+                        </div>
+                    </td>
+                    <td class="centro">
+                        <a href="{{ path('reserva.reservar', {'idQuarto': quarto.id, 'idHospede': hospede.id}) }}"
+                            class="hollow button warning"
+                            onclick="return confirm('Deseja realmente confirmar a reserva ?')">RESERVAR AGORA</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="centro">Nenhum resultado encontrado!</td>
+                </tr>
+                <!-- <tr>
+                    <td colspan="3" class="centro">A data de entrada ou saída foi alterada! É necessária uma nova
+                    pesquisa</td>
+                </tr> -->
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+
+                $("#dataEntrada, #dataSaida").change(function() {
+                    // Recupera a quantidade de linhas da tabela. É usado para saber se o botão pesquisar foi clicado
+                    var linhas = $( "#tabela_reserva tbody tr" ).length;
+
+                    // Essa mensagem só é exibida se a pesquisa já foi feita, ou seja, o botão pesquisa foi clicado
+                    if (linhas > 1) {
+                        var html = "A data de entrada ou saída foi alterada. Por favor, refaça a pesquisa!"
+
+                        $("#tabela_reserva tbody").html("<tr><td colspan='3' class='centro'>" + html + "</td></tr>");
+                    }
+                });
+
+                $("#form_reservar").submit(function() {
+
+                    var data_entrada = $("#dataEntrada").val();
+                    var data_saida = $("#dataSaida").val();
+
+                    if (data_entrada === "" || !isDataValida(data_entrada)) {
+                        alert('Informe uma data de entrada válida!');
+                        return false;
+                    }
+
+                    if (data_saida === "" || !isDataValida(data_saida)) {
+                        alert('Informe uma data de saída válida!');
+                        return false;
+                    }
+
+                    if (validaDataIntervaloDatasBR(data_entrada, data_saida) == false) {
+                        alert('A data de saída deve ser posterior a data de entrada!');
+                        return false;
+                    }
+
+                    return true;
+                });
+
+                $('a.button').click(function(){
+                    $('a.button').attr("disabled","disabled");
+                    $('#btn_pesquisar').attr("disabled","disabled");
+                    $('#dataEntrada').attr("disabled","disabled");
+                    $('#dataSaida').attr("disabled","disabled");
+                });
+
+            });
+        </script>
+
+    {% endblock %}
+
+{% endblock %}

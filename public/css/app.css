@@ -1,0 +1,80 @@
+
+body {
+    font: 16px Calibri, Arial;
+}
+
+h4.titulo {
+    font-family: Verdana;
+    font-size: 25px;
+    border-bottom: 2px solid gray;
+    margin-bottom: 40px;
+}
+
+a.button {
+    float: right;
+}
+
+a.hollow, input.hollow {
+    margin-right: 5px;
+    margin-bottom: 0;
+}
+
+.centro {
+    text-align: center;
+}
+
+span.reservado {
+    background-color: #1E90FF;
+    font: 14px Calibri;
+}
+span.ativo {
+    background-color: #32CD32;
+    font: 14px Calibri;
+}
+span.expirado {
+    background-color: orange;
+    font: 14px Calibri;
+}
+.dt_entrada {
+    color: #228B22;
+}
+
+.dt_saida {
+    color: #B8860B;
+}
+
+a[class*="hollow"] {
+    float: none;
+}
+
+form div ul {
+    font: 14px Calibri, Arial;
+    border: 1px solid pink;
+    color: crimson;
+    display: block;
+    background-color: #FFE4E1;
+    padding: 5px 5px;
+    margin: 0;
+    margin-top: -5px;
+}
+
+form div ul li {
+    list-style-type: none;
+}
+
+.stack tbody tr td {
+    height: 70px;
+}
+
+div.flutuar {
+    display: block;
+    float: left;
+}
+
+p.reservar {
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    color: crimson;
+    border: 1px dotted crimson;
+    margin: 40px 0;
+}

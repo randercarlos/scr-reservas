@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  scr-reservas-app:
+    build:
+      context: .
+      dockerfile: ___docker/Dockerfile
+    container_name: scr-reservas-app
+    restart: unless-stopped
+    volumes:
+      - .:/var/www:delegated
+    depends_on:
+      - scr-reservas-db
+      - scr-reservas-web
+    networks:
+      - scr-reservas-network
+
+  scr-reservas-web:
+    image: nginx:latest
+    container_name: scr-reservas-web
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www:delegated
+      - ./___docker/nginx:/etc/nginx/conf.d:delegated
+    networks:
+      - scr-reservas-network
+
+  scr-reservas-db:
+    image: mysql:5.6
+    container_name: scr-reservas-db
+    restart: unless-stopped
+    volumes:
+        - ./___docker/mysql:/var/lib/mysql:delegated
+    ports:
+      - "3307:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: scr-reservas
+        MYSQL_DATABASE: scr-reservas
+        MYSQL_USER: scr-reservas
+        MYSQL_PASSWORD: scr-reservas
+    networks:
+      - scr-reservas-network
+
+networks:
+  scr-reservas-network:
+    driver: bridge
